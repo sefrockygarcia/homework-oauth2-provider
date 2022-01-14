@@ -18,4 +18,14 @@ class Company < ApplicationRecord
 
   has_many :users, -> { where admin: false },
             dependent: :delete_all
+
+  validates :name, presence: true
+
+  after_create do
+    create_oauth_application!(
+      name: name,
+      redirect_uri: 'urn:ietf:wg:oauth:2.0:oob',
+      scopes: 'read, write'
+    )
+  end
 end

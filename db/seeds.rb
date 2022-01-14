@@ -1,7 +1,7 @@
 admin = User.create!(
   admin: true,
   name: "Jon Doe",
-  email: "admin@example.com",
+  email: "admin@acme.com",
   password: "secretpwd"
 )
 
@@ -19,14 +19,3 @@ company = admin.companies.create!(
     password: 'secretpwd'
   )
 end
-
-app = company.create_oauth_application!(
-  name: company.name,
-  redirect_uri: 'https://example.com/callback',
-)
-
-puts 'Application: '
-puts "name: #{app.name}"
-puts "redirect_uri: #{app.redirect_uri}"
-puts "uid: #{app.uid}"
-puts "secret: #{app.secret}"

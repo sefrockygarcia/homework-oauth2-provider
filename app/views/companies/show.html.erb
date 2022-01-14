@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+
+<p>Name: <%= @company.name %></p>
+<p>Client ID: <%= @company.oauth_application.uid %></p>
+<p>Client Secret: <%= @company.oauth_application.secret %></p>
+
+<%= link_to 'Renew Secret', renew_secret_company_path(@company), method: :put %> |
+<%= link_to 'Edit', edit_company_path(@company) %> |
+<%= link_to 'Back', companies_path %>
