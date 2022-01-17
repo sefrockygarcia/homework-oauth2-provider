@@ -11,7 +11,12 @@
     </div>
   <% end %>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="input-field">
+    <%= form.text_field :name, required: true, autofocus: true %>
+    <%= form.label :name %>
+  </div>
+
+  <div class="input-field">
+    <%= form.submit :save, class: 'btn waves-effect waves-light' %>
   </div>
 <% end %>

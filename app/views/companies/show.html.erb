@@ -1,9 +1,41 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col s12">
+    <p id="notice"><%= notice %></p>
 
-<p>Name: <%= @company.name %></p>
-<p>Client ID: <%= @company.oauth_application.uid %></p>
-<p>Client Secret: <%= @company.oauth_application.secret %></p>
+    <!-- Company info -->
+    <div class="card">
+      <div class="card-content">
+        <span class="card-title"><%= @company.name %></span>
+        <p><span style="font-weight: bold;">UID:</span> <%= @company.oauth_application.uid %></p>
+        <p><span style="font-weight: bold;">Secret:</span> <%= @company.oauth_application.secret %></p>
+      </div>
+      <div class="card-action">
+        <%= link_to 'Renew Secret', renew_secret_company_path(@company), method: :put %>
+        <%= link_to 'Edit', edit_company_path(@company) %>
+        <%= link_to 'Back', companies_path %>
+      </div>
+    </div>
+  
+    <!-- Company Users table -->
+    <h2>Users</h2>
 
-<%= link_to 'Renew Secret', renew_secret_company_path(@company), method: :put %> |
-<%= link_to 'Edit', edit_company_path(@company) %> |
-<%= link_to 'Back', companies_path %>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @users.each do |user| %>
+          <tr>
+            <td><%= user.name %></td>
+            <td><%= user.email %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+  </div>
+</div>

@@ -16,7 +16,7 @@ class Company < ApplicationRecord
            foreign_key: :resource_owner_id,
            dependent: :delete # or :destroy if you need callbacks
 
-  has_many :users, -> { where admin: false },
+  has_many :users,
             dependent: :delete_all
 
   validates :name, presence: true

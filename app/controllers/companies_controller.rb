@@ -8,6 +8,7 @@ class CompaniesController < ApplicationController
 
   # GET /companies/1 or /companies/1.json
   def show
+    @users = @company.users
   end
 
   # GET /companies/new
@@ -21,10 +22,11 @@ class CompaniesController < ApplicationController
 
   # POST /companies or /companies.json
   def create
-    @company = current_user.companies.build(company_params)
+    @company = Company.new(company_params)
 
     respond_to do |format|
       if @company.save
+        current_user.companies.push @company
         format.html { redirect_to company_url(@company), notice: "Company was successfully created." }
         format.json { render :show, status: :created, location: @company }
       else
@@ -76,6 +78,6 @@ class CompaniesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def company_params
-      params.fetch(:company, {})
+      params.require(:company).permit(:name)
     end
 end
