@@ -24,8 +24,8 @@ class Company < ApplicationRecord
   after_create do
     create_oauth_application!(
       name: name,
-      redirect_uri: 'urn:ietf:wg:oauth:2.0:oob',
-      scopes: 'read, write'
+      redirect_uri: "#{ENV['CLIENT_URL']}/auth/homework/callback",
+      # scopes: 'read, write'
     )
   end
 end

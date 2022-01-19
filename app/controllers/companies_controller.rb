@@ -64,6 +64,7 @@ class CompaniesController < ApplicationController
     oauth_app = @company.oauth_application
     oauth_app.renew_secret
     if oauth_app.save
+      @company.access_tokens.update revoked_at: 1.minute.ago 
       redirect_to company_url(@company), notice: "Secret was successfully updated."
     else
       render :edit, status: :unprocessable_entity

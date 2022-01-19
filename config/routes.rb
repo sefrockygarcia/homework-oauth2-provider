@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  root "companies#index"
   devise_for :users
   use_doorkeeper
 
@@ -10,7 +9,10 @@ Rails.application.routes.draw do
   end
 
   namespace :api do
-    resources :users, only: :index
+    get '/me' => 'users#me'
+    resources :users, only: [:index, :update, :create, :destroy]
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  
+  root "companies#index"
 end
