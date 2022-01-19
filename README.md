@@ -19,3 +19,4 @@ DELETE /api/users/:id.json
  2. Run `rails db:create db:migrate`
  3. Set ENV variable `export CLIENT_URL=http://localhost:3001`
  4. Run `rails server`
+ 5. Demo video [here](https://drive.google.com/file/d/1iaNihKpNIVmPJkHq_t4RcTUQ354MMV8a/view?usp=sharing)
